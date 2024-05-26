@@ -43,6 +43,12 @@ func ReadDataFile() ([]float64, error) {
 			data = append(data, num)
 		}
 	}
+	if len(data) == 0 {
+		return nil, fmt.Errorf("no data found")
+	}
+	if err := scanner.Err(); err != nil {
+		return nil, fmt.Errorf("error reading file: %w", err)
+	}
 	return data, nil
 }
 func validCombo(s string) bool {
